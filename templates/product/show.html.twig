@@ -1,0 +1,17 @@
+
+<h1>{{ product.title }}</h1>
+
+<p><strong>Brand:</strong> {{ product.brand }}</p>
+<p><strong>Price:</strong> {{ product.price }}</p>
+{% if product.freeShipping %}
+<p><strong>Free Shipping!</strong></p>
+{% endif %}
+
+<h3>Features</h3>
+<ul>
+    {% for f in product.features %}
+        <li>{{ f }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ path('product_list') }}">⬅ Back to list</a>

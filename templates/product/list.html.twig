@@ -1,0 +1,13 @@
+
+<h1>Product List</h1>
+
+<ul>
+    {% for p in products %}
+        <li>
+            <a href="{{ path('product_show', { index: loop.index0 }) }}">
+                {{ p.title }} — {{ p.price }}
+                {% if p.freeShipping %} (Free Shipping) {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

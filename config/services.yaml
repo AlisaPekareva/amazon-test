@@ -1,0 +1,25 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+
+
+parameters:
+    product_file: '%kernel.project_dir%/public/amazon.json'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\:
+        resource: '../src/'
+        exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
+
+    App\Service\ProductProvider:
+        arguments:
+            $filePath: '%product_file%'
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
