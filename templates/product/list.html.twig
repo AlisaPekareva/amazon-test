@@ -1,17 +1,25 @@
-
 <h1>Product List</h1>
+
 {% if app.user %}
-
     <a href="{{ path('app_logout') }}">Выйти</a>
-
 {% endif %}
-<ul>
-    {% for p in products %}
-        <li>
-            <a href="{{ path('product_show', { index: loop.index0 }) }}">
-                {{ p.title }} — {{ p.price }}
-                {% if p.freeShipping %} (Free Shipping) {% endif %}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+
+{% if products is not empty %}
+    <p>Всего продуктов: {{ products|length }}</p>
+    <ul>
+        {% for p in products %}
+            <li>
+                <a href="{{ path('product_show', { index: loop.index0 }) }}">
+                    {% if p.image %}
+                        <img src="{{ p.image }}" alt="{{ p.title }}" width="100">
+                    {% endif %}
+                    {{ p.title }} — {{ p.price }}
+                    {% if p.freeShipping %} (Free Shipping) {% endif %}
+                </a>
+                <p>Рейтинг: {{ p.rating_score }} / {{ p.rating_stars }} звёзд</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Продукты не найдены</p>
+{% endif %}

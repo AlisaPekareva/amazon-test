@@ -1,22 +1,34 @@
-
 {% if app.user %}
-
     <a href="{{ path('app_logout') }}">Выйти</a>
-
 {% endif %}
+
 <h1>{{ product.title }}</h1>
 
-<p><strong>Brand:</strong> {{ product.brand }}</p>
-<p><strong>Price:</strong> {{ product.price }}</p>
-{% if product.freeShipping %}
-<p><strong>Free Shipping!</strong></p>
+{% if product.image %}
+    <img src="{{ product.image }}" alt="{{ product.title }}" width="300">
 {% endif %}
 
-<h3>Features</h3>
-<ul>
-    {% for f in product.features %}
-        <li>{{ f }}</li>
-    {% endfor %}
-</ul>
+<p><strong>Бренд:</strong> {{ product.brand }}</p>
+<p><strong>Цена:</strong> {{ product.price }}</p>
+<p><strong>Рейтинг:</strong> {{ product.rating_score }} / {{ product.rating_stars }} звёзд</p>
 
-<a href="{{ path('product_list') }}">⬅ Back to list</a>
+{% if product.freeShipping %}
+    <p><strong>Бесплатная доставка</strong></p>
+{% endif %}
+
+{% if product.features is not empty %}
+    <h3>Особенности:</h3>
+    <ul>
+        {% for feature in product.features %}
+            <li>{{ feature }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<p>
+    <a href="{{ product.detail_url }}" target="_blank">Comprar ahora </a>
+</p>
+
+<p>
+    <a href="{{ path('product_list') }}">← Вернуться к списку продуктов</a>
+</p>
