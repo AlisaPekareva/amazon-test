@@ -1,6 +1,10 @@
 
 <h1>Product List</h1>
+{% if app.user %}
 
+    <a href="{{ path('app_logout') }}">Выйти</a>
+
+{% endif %}
 <ul>
     {% for p in products %}
         <li>

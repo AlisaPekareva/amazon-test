@@ -39,13 +39,3 @@ class ProductProvider
         return $products;
     }
 }
-    
-        // Генерируем случайную оценку для каждого продукта
-       // foreach ($products as &$product) {
-      //      $product['rating'] = round(mt_rand(80, 99)/10, 1); // 8.0 - 9.9
-       // }
-
-       // return $products;
-    
-
-

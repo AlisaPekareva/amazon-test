@@ -1,4 +1,9 @@
 
+{% if app.user %}
+
+    <a href="{{ path('app_logout') }}">Выйти</a>
+
+{% endif %}
 <h1>{{ product.title }}</h1>
 
 <p><strong>Brand:</strong> {{ product.brand }}</p>

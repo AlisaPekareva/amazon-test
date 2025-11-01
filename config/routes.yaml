@@ -13,3 +13,11 @@ product_show:
   controller: App\Controller\ProductController::show
   requirements:
     index: '\d+'
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
