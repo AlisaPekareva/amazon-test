@@ -24,16 +24,5 @@ class ProductController extends AbstractController
         ]);
     }
 
-    public function show(int $index): Response
-    {
-        $products = $this->provider->getProducts();
-
-        if (!isset($products[$index])) {
-            throw $this->createNotFoundException('Product not found');
-        }
-
-        return $this->render('product/show.html.twig', [
-            'product' => $products[$index],
-        ]);
-    }
+   
 }

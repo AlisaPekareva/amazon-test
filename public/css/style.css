@@ -1,13 +1,37 @@
-/* Контейнер всех строк */
+
+
+
 .product-grid {
     width: 100%;
     box-sizing: border-box;
 }
 
-a {
-    text-decoration: none;
+.head {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
 }
-/* Каждая строка продукта (4 блока) */
+
+.head > span {
+   
+    font-size:14px;
+    text-align: right;
+}
+
+
+.head > div {
+    font-size:24px;
+    font-weight: bold;
+}
+/* Filas del producto */
 .product-row {
 
     display: grid;
@@ -25,7 +49,7 @@ a {
     border-left: 1px solid  #e7d8d8;
 }
 
-/* Блок 1 - изображение и ранг */
+/* parte 1 - imagem y numero */
 .product-image-block {
     position:relative;
     display: block;
@@ -63,7 +87,7 @@ a {
     
 }
 
-/* Блок 2 - рейтинг */
+/* parte 2 - rating */
 .product-rating-block {
     display: flex;
     flex-direction: column;
@@ -93,9 +117,9 @@ a {
     color: #ccc;
     margin-right: 2px;
 }
-.star.filled { color: #f5c518; } /* золотой цвет звезд */
+.star.filled { color: #f5c518; } 
 
-/* Блок 3 - информация */
+/* Parte  3 - descripcion */
 .product-info-block .product-title {
 
         font-size: 15px;
@@ -103,13 +127,13 @@ a {
         margin: 40px 30px 33px 10px;
  
         display: -webkit-box;
-        -webkit-line-clamp: 2; /* Кол-во видимых строк */
+        -webkit-line-clamp: 2; 
         -webkit-box-orient: vertical;
     
         overflow: hidden;
         text-overflow: ellipsis;
     
-        max-height: 3.2em; /* Высота примерно под 2 строки */
+        max-height: 3.2em; 
         line-height: 1.6em;
     }
 
@@ -152,7 +176,7 @@ a {
     font-size: 13px;
 }
 
-/* Блок 4 - кнопка */
+/* parte 4 4 - botones */
 .product-buy-block {
     display: flex;
     flex-direction: column;
@@ -183,10 +207,9 @@ a {
    
 }
 
-/* Отступы между строками - делаются бордером сверху/снизу, можно увеличить */
-.product-row + .product-row {}
 
-/* Адаптив: на маленьких экранах переводим в 1 колонку с блоками вертикально */
+
+/* Аdaptivo para las pantallas pequenas*/
 @media (max-width: 900px) {
     .product-row {
         grid-template-columns: 80px 1fr;
@@ -202,5 +225,189 @@ a {
 }
 
 
+.product-row {
+    display: flex;
+    flex-wrap: wrap; /
+    border: 1px solid #ccc;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    position:
+relative;
+}
+
+/* columnas */
+.product-image-block,
+.product-rating-block,
+.product-info-block,
+.product-buy-block {
+    flex: 1 1 20%;
+    min-width: 120px;
+}
+
+
+.toggle-checkbox {
+    display: none;
+}
+
+/* el boton arriba */
+.toggle-btn.top-btn {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none; 
+    user-select: none;
+    margin-left: auto;
+    margin-top: 5px;
+}
+
+
+.full-description {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #ddd;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.desc-content {
+    flex: 1 1 70%;
+}
+
+
+.toggle-checkbox:checked ~ .full-description {
+    max-height: 1000px; 
+}
+
+
+.toggle-btn.bottom-btn {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.toggle-btn.top-btn::after {
+    content: " Mostrar mas ⌄";
+}
+
+.toggle-checkbox:checked + .toggle-btn.top-btn::after {
+    content: "Mostrar menos";
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 900px) {
+    .product-row {
+        flex-direction: column;
+    }
+    .product-image-block,
+    .product-rating-block,
+    .product-info-block,
+    .product-buy-block {
+        flex: 1 1 100%;
+        min-width: auto;
+    }
+    .full-description {
+        flex-direction: column;
+    }
+    .desc-content {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+    }
+    .toggle-btn.bottom-btn {
+        margin-left: 0;
+        align-self: flex-start;
+    }
+    .toggle-btn.top-btn {
+        margin-left: 0;
+    }
+}
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+    position: relative;
+}
+
+.product-image-block,
+.product-rating-block,
+.product-info-block,
+.product-buy-block {
+    flex: 1 1 20%;
+    min-width: 120px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-btn.top-btn {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+    user-select: none;
+    display: block;
+    margin-top: 5px;
+}
+
+.full-description {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+   
+    
+}
+
+.desc-content {
+    flex: 1 1 auto;
+}
+
+.toggle-checkbox:checked ~ .full-description {
+    max-height: 1000px;
+    border: 1px solid #ddd;
+}
+
+.toggle-btn.bottom-btn {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.toggle-btn.top-btn::after {
+    content: " Mostrar más ⌄";
+}
+
+.toggle-checkbox:checked + .toggle-btn.top-btn::after {
+    content: "  Mostrar menos ⌃";
+}
 
 

@@ -1,22 +1,36 @@
-1 
-docker-compose up -d --build 
-docker-compose exec app bash
+
+docker-compose up -d --build //docker
+docker-compose exec app bash //terminal
 
 
-docker ps 
-#запустить на localhost:8000 в контейнере (перейти в контейнере в папку project)
+
+#iniciar secion en localhost:8000 en la carpeta "project" 
 php -S 0.0.0.0:8000 -t public
 
 
-composer require symfony/cache
-composer require symfony/security-bundle
-composer require twig
+Rutas:localhost:8000/       - la pagina principal ,
+ localhost:8000/login             - login/logout 
+test email :user@example.com:
+test contrasena: test123
 
-sudo chown -R $USER:$USER amazon-test
-sudo chmod 755 -R amazon-test
+Comentarios :  
+Proyecto de demostración  para un catálogo de productos. 
+Incluye:
 
+- Autorización de usuarios y verificaciones de seguridad básicas.
+- Renderizado de la página de productos de JSON con descripciones detalladas y calificaciones con estrellas.
+- Visualización  (descuentos no implementados, JSON no proporcionaba datos,falto mas tiempo para realizarlo).
+- Frontend rápido para mostrar comprensión de la estructura y funcionalidad.
+- Contenedor Docker configurado con PHP 7.4 y Symfony 4.4.
+- Entorno básico preparado para pruebas, sin conexión a base de datos.
+- Procesamiento de JSON "sobre la marcha" para pruebas rápidas, lo que permite una implementación más rápida. 
+En un proyecto real, se debería analizar con detalle el mejor método de manejo de datos, considerando aspectos como seguridad y escalabilidad.
 
-user@example.com:
-# пароль: test123
+Pendiente por mostrar / posibles mejoras:
+
+- Integración de descuentos y promociones.
+- Conexión a base de datos real.
+- Mejoras en el frontend según diseño detallado.
+- Optimización y validación de seguridad avanzada.
 
 

@@ -8,11 +8,6 @@ product_list:
   path: /
   controller: App\Controller\ProductController::list
 
-product_show:
-  path: /products/{index}
-  controller: App\Controller\ProductController::show
-  requirements:
-    index: '\d+'
 
 app_login:
     path: /login

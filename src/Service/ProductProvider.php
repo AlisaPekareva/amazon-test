@@ -27,7 +27,7 @@ class ProductProvider
             $itemInfo = $item['ItemInfo'] ?? [];
             $offers = $item['Offers']['Listings'][0] ?? [];
     
-            // безопасное получение данных
+            // secure getting data
             $title = $itemInfo['Title']['DisplayValue'] ?? 'Без названия';
             $brand = $itemInfo['ByLineInfo']['Brand']['DisplayValue'] 
                      ?? $itemInfo['ByLineInfo']['Manufacturer']['DisplayValue'] 
@@ -36,7 +36,7 @@ class ProductProvider
             $features = $itemInfo['Features']['DisplayValues'] ?? [];
             $freeShipping = $offers['DeliveryInfo']['IsFreeShippingEligible'] ?? false;
     
-            // безопасно получаем изображение
+            // secure getting image
             if (isset($item['Images']['Primary']['Large']['URL'])) {
                 $image = $item['Images']['Primary']['Large']['URL'];
             } elseif (isset($item['Images']['Pri']['Large']['URL'])) {
@@ -45,9 +45,8 @@ class ProductProvider
                 $image = ''; // fallback
             }
     
-            // добавляем рейтинг
-            $rating_score = round(mt_rand(90, 99) / 10, 1); // например 9.0–9.9
-            //$rating_stars = round(mt_rand(40, 50)/ 10, 1); // например 4.0–5.0
+            // rating
+            $rating_score = round(mt_rand(90, 99) / 10, 1); // for example 9.0–9.9
             if($rating_score >= 9.8){
                 $rating_stars = 5.0;
                 $label = '"Excepcional"';

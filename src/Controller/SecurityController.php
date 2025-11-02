@@ -21,7 +21,7 @@ class SecurityController extends AbstractController
 
     public function logout(): void
     {
-        // Контроллер пустой, Symfony обрабатывает logout автоматически
-        throw new \Exception('Этот метод можно оставить пустым – Symfony его перехватывает.');
+        // controller is empty, Symfony work
+        throw new \Exception('This method should be empty, Symfony work with it.');
     }
 }
