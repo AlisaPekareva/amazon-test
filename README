@@ -1,0 +1,23 @@
+1 
+docker-compose up -d --build 
+docker-compose exec app bash
+
+
+docker ps 
+#запустить на localhost:8000 в контейнере (перейти в контейнере в папку project)
+php -S 0.0.0.0:8000 -t public
+
+
+composer require symfony/cache
+composer require symfony/security-bundle
+composer require twig
+
+sudo chown -R $USER:$USER amazon-test
+sudo chmod 755 -R amazon-test
+
+ключ гитхаб
+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
+user@example.com:
+# пароль: test123
+
+

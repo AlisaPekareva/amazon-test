@@ -1,25 +1,93 @@
-<h1>Product List</h1>
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/product.css">
+{% endblock %}
+
+{% block body %}
+<h1>Список продуктов</h1>
 
 {% if app.user %}
     <a href="{{ path('app_logout') }}">Выйти</a>
 {% endif %}
 
-{% if products is not empty %}
-    <p>Всего продуктов: {{ products|length }}</p>
-    <ul>
-        {% for p in products %}
-            <li>
-                <a href="{{ path('product_show', { index: loop.index0 }) }}">
-                    {% if p.image %}
-                        <img src="{{ p.image }}" alt="{{ p.title }}" width="100">
-                    {% endif %}
-                    {{ p.title }} — {{ p.price }}
-                    {% if p.freeShipping %} (Free Shipping) {% endif %}
-                </a>
-                <p>Рейтинг: {{ p.rating_score }} / {{ p.rating_stars }} звёзд</p>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
+{% if products is empty %}
     <p>Продукты не найдены</p>
+{% else %}
+    <div class="product-grid">
+        {% for p in products %}
+            {# каждая строка продукта = product-row #}
+            <div class="product-row">
+                {# Блок 1: номер + изображение #}
+                <div class="product-image-block">
+                    <div class="rank">#{{ loop.index }}</div>
+                    {% if p.image %}
+                        <img src="{{ p.image }}" alt="{{ p.title }}">
+                    {% else %}
+                        <div class="no-image">No image</div>
+                    {% endif %}
+                </div>
+
+                {# Блок 2: рейтинг (число + звезды + подпись) #}
+                <div class="product-rating-block">
+                    <div class="rating-number">{{ p.rating_score }}</div>
+                    <div class="rating-stars">
+                        {% for i in 1..5 %}
+                            {% if i <= p.rating_stars %}
+                                <span class="star filled">★</span>
+                            {% else %}
+                                <span class="star">☆</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="rating-text">
+                        {% if p.rating_score is defined %}
+                         <span class = "rating-label" > {{ p.label }}</span>
+                           
+                        {% endif %}
+                    </div>
+                </div>
+
+                {# Блок 3: основная информация, фичи, бренд, цена #}
+                <div class="product-info-block">
+                    <h3 class="product-title">{{ p.title }}</h3>
+                    <div class="product-brand">{{ p.brand }}</div>
+                    {#<div class="product-price">Цена: {{ p.price }}</div>#}
+                     <div class="product-tags">
+                        {% if p.freeShipping %}
+                            <span class="tag">Descuentos</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-tags">
+                        {% if p.freeShipping %}
+                            <span class="tag">Envío gratis</span>
+                        {% endif %}
+                    </div>
+                   
+                   {# {% if p.features is defined and p.features is not empty %}
+                        <ul class="features">
+                            {% for f in p.features|slice(0,3) %}
+                                <li>{{ f }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}#}
+
+                    <div class="more-link">
+                        <a href="{{ path('product_show', { index: loop.index0 }) }}">Mostrar más ⌄</a>
+                    </div>
+                </div>
+
+                {# Блок 4: кнопка покупки (ссылка на Amazon) #}
+                <div class="product-buy-block">
+                    <a href="{{ p.detail_url }}" target="_blank" class="amazon-btn">
+                        Comprar ahora › 
+                    </a>
+                     <div class="amazon-logo" ></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endif %}
+{% endblock %}

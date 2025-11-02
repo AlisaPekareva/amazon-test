@@ -47,7 +47,22 @@ class ProductProvider
     
             // добавляем рейтинг
             $rating_score = round(mt_rand(90, 99) / 10, 1); // например 9.0–9.9
-            $rating_stars = round(mt_rand(40, 50) / 10, 1); // например 4.0–5.0
+            //$rating_stars = round(mt_rand(40, 50)/ 10, 1); // например 4.0–5.0
+            if($rating_score >= 9.8){
+                $rating_stars = 5.0;
+                $label = '"Excepcional"';
+            } 
+            elseif 
+                ($rating_score >= 9.2){
+                    $rating_stars = 4.5;
+                    $label = '"Excelente"';
+                } else {
+                
+                        $rating_stars = 4.2;
+                        $label = '"Genial"';
+                     
+
+            }
     
             $products[] = [
                 'title' => $title,
@@ -58,6 +73,7 @@ class ProductProvider
                 'image' => $image,
                 'rating_score' => $rating_score,
                 'rating_stars' => $rating_stars,
+                'label'=> $label,
                 'detail_url' => $item['DetailPageURL'] ?? '#',
             ];
         }

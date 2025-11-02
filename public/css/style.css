@@ -1,0 +1,206 @@
+/* Контейнер всех строк */
+.product-grid {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+/* Каждая строка продукта (4 блока) */
+.product-row {
+
+    display: grid;
+    grid-template-columns: 22% 18% 40% 20%;
+    align-items: stretch;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 16px;
+    background: #fff;
+    
+}
+.product-row > div {
+    border-top: 1px solid  #e7d8d8; 
+    border-bottom: 1px solid  #e7d8d8;
+    border-left: 1px solid  #e7d8d8;
+}
+
+/* Блок 1 - изображение и ранг */
+.product-image-block {
+    position:relative;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+   
+    
+}
+
+
+.product-image-block .rank {
+    position: absolute;
+    background: #c3c4c3;
+    color: #2b2a2a;
+    font-weight: 700;
+    padding: 4px 8px;
+    font-size: 13px;
+
+
+}
+
+.product-image-block img {
+   
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    
+}
+.product-image-block img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+/* Блок 2 - рейтинг */
+.product-rating-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+   
+
+
+}
+.rating-label{
+    color: #153aa0;
+    font-weight: 700;
+}
+.rating-number {
+    font-size: 190%;
+    font-weight: 700;
+    color: #111;
+    line-height: 1;
+}
+.rating-stars {
+    margin-top: 6px;
+}
+.star {
+    font-size: 150%;
+    color: #ccc;
+    margin-right: 2px;
+}
+.star.filled { color: #f5c518; } /* золотой цвет звезд */
+
+/* Блок 3 - информация */
+.product-info-block .product-title {
+
+        font-size: 15px;
+        font-weight: bold;
+        margin: 40px 30px 33px 10px;
+ 
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Кол-во видимых строк */
+        -webkit-box-orient: vertical;
+    
+        overflow: hidden;
+        text-overflow: ellipsis;
+    
+        max-height: 3.2em; /* Высота примерно под 2 строки */
+        line-height: 1.6em;
+    }
+
+
+.product-info-block .product-brand {
+    font-size: 15px;
+    color: #666;
+    font-weight: bold;
+    margin: 40px 30px 33px 10px;
+
+}
+.product-info-block .product-price {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.product-tags { 
+    margin-bottom: 8px;  
+     display: inline-block;
+     border: 1px solid  #a39a9a;
+     border-radius: 6px;
+     margin-left: 6px;
+    }
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #eef6ff;
+    border-radius: 4px;
+    font-size: 12px;
+    
+}
+.more-link{
+   
+    margin: 20px 10px 15px 10px;
+}
+.features {
+    margin: 6px 0 0 16px;
+    padding: 60px;
+    list-style: disc;
+    color: #444;
+    font-size: 13px;
+}
+
+/* Блок 4 - кнопка */
+.product-buy-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+   
+   
+}
+.amazon-btn {
+    display: inline-block;
+    background: #ffbf00;
+    color: #eef6ff;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    border: 1px solid #ffaa00;
+}
+.amazon-logo {
+    width: 80px;
+    height: 24px;
+    background-image: url('/images/amazon-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+   
+   
+}
+
+/* Отступы между строками - делаются бордером сверху/снизу, можно увеличить */
+.product-row + .product-row {}
+
+/* Адаптив: на маленьких экранах переводим в 1 колонку с блоками вертикально */
+@media (max-width: 900px) {
+    .product-row {
+        grid-template-columns: 80px 1fr;
+        grid-template-areas:
+            "img info"
+            "stars buy";
+        gap: 8px;
+    }
+    .product-image-block { grid-area: img; }
+    .product-rating-block { grid-area: stars; text-align: left; }
+    .product-info-block { grid-area: info; }
+    .product-buy-block { grid-area: buy; }
+}
+
+
+
+
